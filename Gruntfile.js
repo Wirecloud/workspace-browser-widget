@@ -1,9 +1,6 @@
 /*
- * workspace-browser
- * https://github.com/aarranz/workspace-browser-widget
- *
- * Copyright (c) 2016 CoNWeT Lab, Universidad Politécnica de Madrid
- * Licensed under the Apache-2.0 license.
+ * Copyright (c) 2016 Vendor
+ * Licensed under the MIT license.
  */
 
 var ConfigParser = require('wirecloud-config-parser');
@@ -15,6 +12,7 @@ module.exports = function (grunt) {
 
     grunt.initConfig({
 
+        isDev: grunt.option('dev') ? '-dev' : '',
         metadata: parser.getData(),
 
         bower: {
@@ -28,45 +26,21 @@ module.exports = function (grunt) {
             }
         },
 
-        jshint: {
-            options: {
-                jshintrc: true
-            },
-            all: {
-                files: {
-                    src: ['src/js/**/*.js']
-                }
+        eslint: {
+            widget: {
+                src: 'src/js/**/*.js'
             },
             grunt: {
                 options: {
-                    jshintrc: '.jshintrc-node'
+                    configFile: '.eslintrc-node'
                 },
-                files: {
-                    src: ['Gruntfile.js']
-                }
+                src: 'Gruntfile.js',
             },
             test: {
                 options: {
-                    jshintrc: '.jshintrc-jasmine'
+                    configFile: '.eslintrc-jasmine'
                 },
-                files: {
-                    src: ['src/test/**/*.js', '!src/test/fixtures/']
-                }
-            }
-        },
-
-        jscs: {
-            widget: {
-                src: 'src/js/**/*.js',
-                options: {
-                    config: ".jscsrc"
-                }
-            },
-            grunt: {
-                src: 'Gruntfile.js',
-                options: {
-                    config: ".jscsrc"
-                }
+                src: ['src/test/**/*.js', '!src/test/fixtures/']
             }
         },
 
@@ -88,7 +62,7 @@ module.exports = function (grunt) {
             widget: {
                 options: {
                     mode: 'zip',
-                    archive: 'dist/<%= metadata.vendor %>_<%= metadata.name %>_<%= metadata.version %>.wgt'
+                    archive: 'dist/<%= metadata.vendor %>_<%= metadata.name %>_<%= metadata.version %><%= isDev %>.wgt'
                 },
                 files: [
                     {
@@ -144,6 +118,8 @@ module.exports = function (grunt) {
                     specs: 'src/test/js/*Spec.js',
                     helpers: ['src/test/helpers/*.js'],
                     vendor: [
+                        'node_modules/jquery/dist/jquery.js',
+                        'node_modules/jasmine-jquery/lib/jasmine-jquery.js',
                         'node_modules/mock-applicationmashup/lib/vendor/mockMashupPlatform.js',
                         'src/test/vendor/*.js'
                     ]
@@ -173,16 +149,15 @@ module.exports = function (grunt) {
                 overwrite: false
             },
             publish: {
-                file: 'dist/<%= metadata.vendor %>_<%= metadata.name %>_<%= metadata.version %>.wgt'
+                file: 'dist/<%= metadata.vendor %>_<%= metadata.name %>_<%= metadata.version %><%= isDev %>.wgt'
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-wirecloud');
     grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
-    grunt.loadNpmTasks('grunt-jscs');
+    grunt.loadNpmTasks('gruntify-eslint');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -191,9 +166,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('test', [
         'bower:install',
-        'jshint',
-        'jshint:grunt',
-        'jscs',
+        'eslint',
         'jasmine:coverage'
     ]);
 
