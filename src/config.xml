@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="WireCloud" name="workspace-browser" version="0.1.1">
+<widget xmlns="http://wirecloud.conwet.fi.upm.es/ns/macdescription/1" vendor="WireCloud" name="workspace-browser" version="0.1.2">
     <details>
         <title>Workspace Browser</title>
         <homepage>https://github.com/Wirecloud/workspace-browser-widget</homepage>
