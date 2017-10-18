@@ -16,19 +16,13 @@ sudo apt-get install npm
 sudo npm install -g bower
 ```
 
-If you want the last version of the widget, you should change to the `develop` branch:
+Install other npm dependencies by running:
 
 ```bash
-git checkout develop
+npm install
 ```
 
-Install other npm dependencies by running: (need root because some libraries use applications, check package.json before to be sure)
-
-```bash
-sudo npm install
-```
-
-For build the widget you need download grunt:
+In order to build this operator you need to download grunt:
 
 ```bash
 sudo npm install -g grunt-cli
@@ -52,5 +46,5 @@ available on Read the Docs.
 
 ## Copyright and License
 
-Copyright (c) 2016 Vendor
-Licensed under the MIT license.
+Copyright (c) 2016-2017 CoNWeT Lab., Universidad Politécnica de Madrid
+Licensed under the Apache-2.0 license.
