@@ -18,7 +18,7 @@
     var error_template = builder.DEFAULT_OPENING + '<div class="alert alert-error"><t:message/></div>' + builder.DEFAULT_CLOSING;
     var corrected_query_template = builder.DEFAULT_OPENING + '<div class="alert alert-info"><p>Showing results for <b><t:corrected_query/></b></p></div>' + builder.DEFAULT_CLOSING;
     var workspace_template = builder.DEFAULT_OPENING +
-        '<div class="workspace"><t:visibility/><div class="workspace-details"><div><strong><t:owner/>/<t:name/></strong></div><div><t:description/></div></div><div class="workspace-actions btn-group"><t:usebutton iconClass="fa fa-play"/><t:removebutton state="danger" iconClass="fa fa-trash"/></div></div>' +
+        '<div class="workspace"><t:visibility/><div class="workspace-details"><div><strong><t:owner/>/<t:title/></strong></div><div><t:description/></div></div><div class="workspace-actions btn-group"><t:usebutton iconClass="fa fa-play"/><t:removebutton state="danger" iconClass="fa fa-trash"/></div></div>' +
         builder.DEFAULT_CLOSING;
 
     var request = null;
@@ -107,6 +107,7 @@
             workspaces.forEach(function (workspace, search_info) {
                 var workspace_entry = builder.parse(workspace_template, {
                     name: workspace.name,
+                    title: workspace.title,
                     owner: workspace.owner,
                     description: workspace.description,
                     visibility: function (options) {
