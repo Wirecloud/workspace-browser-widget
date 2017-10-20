@@ -1,6 +1,10 @@
 /*
- * Copyright (c) 2016 Vendor
- * Licensed under the MIT license.
+ * workspace-browser
+ * https://github.com/aarranz/workspace-browser-widget
+ *
+ * Copyright (c) 2016-2017 CoNWeT Lab, Universidad Politécnica de Madrid
+ * Copyright (c) 2017 Future Internet Consulting and Development Solutions S.L.
+ * Licensed under the Apache-2.0 license.
  */
 
 var ConfigParser = require('wirecloud-config-parser');
@@ -14,17 +18,6 @@ module.exports = function (grunt) {
 
         isDev: grunt.option('dev') ? '-dev' : '',
         metadata: parser.getData(),
-
-        bower: {
-            install: {
-                options: {
-                    layout: function (type, component, source) {
-                        return type;
-                    },
-                    targetDir: './build/lib/lib'
-                }
-            }
-        },
 
         eslint: {
             widget: {
@@ -104,7 +97,7 @@ module.exports = function (grunt) {
 
         clean: {
             build: {
-                src: ['build', 'bower_components']
+                src: ['build']
             },
             temp: {
                 src: ['build/src']
@@ -155,17 +148,14 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-wirecloud');
-    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
     grunt.loadNpmTasks('gruntify-eslint');
     grunt.loadNpmTasks('grunt-contrib-compress');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-strip-code');
-    grunt.loadNpmTasks('grunt-text-replace');
 
     grunt.registerTask('test', [
-        'bower:install',
         'eslint',
         'jasmine:coverage'
     ]);
