@@ -1,4 +1,4 @@
-## v0.1.2 (18/10/2017)
+## v0.1.2 (20/10/2017)
 
 - Use title entry from workspace data model
 - Improve README

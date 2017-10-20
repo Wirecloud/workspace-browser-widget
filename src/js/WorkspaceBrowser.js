@@ -2,7 +2,8 @@
  * workspace-browser
  * https://github.com/aarranz/workspace-browser-widget
  *
- * Copyright (c) 2016 CoNWeT Lab, Universidad Politécnica de Madrid
+ * Copyright (c) 2016-2017 CoNWeT Lab, Universidad Politécnica de Madrid
+ * Copyright (c) 2017 Future Internet Consulting and Development Solutions S.L.
  * Licensed under the Apache-2.0 license.
  */
 
@@ -199,7 +200,7 @@
     layout.north.appendChild(heading_layout);
 
     // Input field
-    var input_div = new se.Container({class: "se-input-group"});
+    var input_div = new se.Container({class: "se-input-group se-input-group-block"});
     var text_input = new StyledElements.StyledTextField({placeholder: 'Search keywords'});
     input_div.appendChild(text_input);
     text_input.addEventListener('keydown', onSearchInputKeyPress);
