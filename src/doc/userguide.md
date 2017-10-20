@@ -5,16 +5,15 @@ workspaces/dashboards.
 
 ## Settings
 
-N/A
+This widget has no settings
 
 ## Wiring
 
 ### Input Endpoints
 
+- This widget has no input endpoint
+
 ### Output Endpoints
 
-## Usage
+- This widget has no output endpoint
 
-## Reference
-
-- [FIWARE Mashup](https://mashup.lab.fiware.org/)
