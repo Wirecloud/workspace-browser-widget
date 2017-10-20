@@ -1,7 +1,8 @@
 ## v0.1.2 (20/10/2017)
 
-- Use title entry from workspace data model
-- Improve README
+- Use the title metadata to list workspaces. This change requires WireCloud
+  v1.1+
+- Improved documentation
 
 ## v0.1.1
 
