@@ -7,7 +7,7 @@
  * Licensed under the Apache-2.0 license.
  */
 
-/* globals StyledElements */
+/* globals StyledElements, i18next */
 /* exported WorkspaceBrowser */
 
 (function (mp, se) {
@@ -27,6 +27,36 @@
     var anonymous = MashupPlatform.context.get('isanonymous');
     var current_user = mp.context.get('username');
     var current_workspace = mp.mashup.context.get('owner') + '/' + mp.mashup.context.get('name');
+
+    // i18n
+    i18next.init({
+        fallbackLng: 'en',
+        resources: {
+            en: {
+                translation: {
+                    search_keywords: 'Search keywords',
+                    all_dashboards: 'All Dashboards',
+                    my_dashboards: 'My Dashboards',
+                    others_dashboards: 'Others Dashboards',
+                    private_dashboard: 'Private Dashboards',
+                    shared_dashboards: 'Shared Dashboards',
+                    public_dashboards: 'Public Dashboards'
+                }
+            },
+            ja: {
+                translation: {
+                    search_keywords: '検索キーワード',
+                    all_dashboards: '全てのダッシュボード',
+                    my_dashboards: 'マイ・ダッシュボード',
+                    others_dashboards: 'その他のダッシュボード',
+                    private_dashboard: 'プライベート・ダッシュボード',
+                    shared_dashboards: '共有ダッシュボード',
+                    public_dashboards: 'パブリック・ダッシュボード'
+                }
+            }
+        }
+    });
+    i18next.changeLanguage(mp.context.get('language'));
 
     var source = new se.PaginatedSource({
         pageSize: 30,
@@ -201,7 +231,7 @@
 
     // Input field
     var input_div = new se.Container({class: "se-input-group se-input-group-block"});
-    var text_input = new StyledElements.StyledTextField({placeholder: 'Search keywords'});
+    var text_input = new StyledElements.StyledTextField({placeholder: i18next.t('search_keywords')});
     input_div.appendChild(text_input);
     text_input.addEventListener('keydown', onSearchInputKeyPress);
     text_input.addEventListener('change', onSearchInputChange);
@@ -212,7 +242,7 @@
         var filter_buttons = new se.Container({class: 'btn-group'});
         heading_layout.east.appendChild(filter_buttons);
 
-        var allButton = new se.ToggleButton({iconClass: 'fa fa-circle', title: 'All Dashboards'});
+        var allButton = new se.ToggleButton({iconClass: 'fa fa-circle', title: i18next.t('all_dashboards')});
         allButton.addEventListener('click', function () {
             allButton.active = true;
             ownedButton.active = false;
@@ -221,7 +251,7 @@
         });
         allButton.active = true;
         filter_buttons.appendChild(allButton);
-        var ownedButton = new se.ToggleButton({iconClass: 'fa fa-user', title: 'My Dashboards'});
+        var ownedButton = new se.ToggleButton({iconClass: 'fa fa-user', title: i18next.t('my_dashboards')});
         ownedButton.addEventListener('click', function () {
             allButton.active = false;
             ownedButton.active = true;
@@ -229,7 +259,7 @@
             source.refresh();
         });
         filter_buttons.appendChild(ownedButton);
-        var othersButton = new se.ToggleButton({iconClass: 'fa fa-users', title: 'Others Dashboards'});
+        var othersButton = new se.ToggleButton({iconClass: 'fa fa-users', title: i18next.t('others_dashboards')});
         othersButton.addEventListener('click', function () {
             allButton.active = false;
             ownedButton.active = false;
@@ -242,7 +272,7 @@
         var visibility_buttons = new se.Container({class: 'btn-group'});
         heading_layout.east.appendChild(visibility_buttons);
 
-        var anyButton = new se.ToggleButton({iconClass: 'fa fa-circle', title: 'All Dashboards'});
+        var anyButton = new se.ToggleButton({iconClass: 'fa fa-circle', title: i18next.t('all_dashboards')});
         anyButton.addEventListener('click', function () {
             anyButton.active = true;
             privateButton.active = false;
@@ -253,7 +283,7 @@
         anyButton.active = true;
         visibility_buttons.appendChild(anyButton);
 
-        var privateButton = new se.ToggleButton({iconClass: 'fa fa-lock', title: 'Private Dashboards'});
+        var privateButton = new se.ToggleButton({iconClass: 'fa fa-lock', title: i18next.t('private_dashboard')});
         privateButton.addEventListener('click', function () {
             anyButton.active = false;
             privateButton.active = true;
@@ -263,7 +293,7 @@
         });
         visibility_buttons.appendChild(privateButton);
 
-        var sharedButton = new se.ToggleButton({iconClass: 'fa fa-share-alt', title: 'Shared Dashboards'});
+        var sharedButton = new se.ToggleButton({iconClass: 'fa fa-share-alt', title: i18next.t('shared_dashboards')});
         sharedButton.addEventListener('click', function () {
             anyButton.active = false;
             privateButton.active = false;
@@ -273,7 +303,7 @@
         });
         visibility_buttons.appendChild(sharedButton);
 
-        var publicButton = new se.ToggleButton({iconClass: 'fa fa-globe', title: 'Public Dashboards'});
+        var publicButton = new se.ToggleButton({iconClass: 'fa fa-globe', title: i18next.t('public_dashboards')});
         publicButton.addEventListener('click', function () {
             anyButton.active = false;
             privateButton.active = false;

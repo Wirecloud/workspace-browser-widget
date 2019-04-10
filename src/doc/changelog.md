@@ -1,3 +1,8 @@
+## v0.1.3
+
+- Add i18n feature
+- Add Japanese translation
+
 ## v0.1.2 (20/10/2017)
 
 - Use the title metadata to list workspaces. This change requires WireCloud
