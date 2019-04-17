@@ -19,6 +19,18 @@ module.exports = function (grunt) {
         isDev: grunt.option('dev') ? '-dev' : '',
         metadata: parser.getData(),
 
+        bower: {
+            install: {
+                options: {
+                    copy: true,
+                    layout: function (type, component, source) {
+                        return type;
+                    },
+                    targetDir: './build/lib/lib'
+                }
+            }
+        },
+
         eslint: {
             widget: {
                 src: 'src/js/**/*.js'
@@ -62,7 +74,7 @@ module.exports = function (grunt) {
                         expand: true,
                         cwd: 'src',
                         src: [
-                            'DESCRIPTION.md',
+                            '*.md',
                             'css/**/*',
                             'doc/**/*',
                             'images/**/*',
@@ -97,7 +109,7 @@ module.exports = function (grunt) {
 
         clean: {
             build: {
-                src: ['build']
+                src: ['build', 'bower_components']
             },
             temp: {
                 src: ['build/src']
@@ -148,6 +160,7 @@ module.exports = function (grunt) {
     });
 
     grunt.loadNpmTasks('grunt-wirecloud');
+    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-jasmine'); // when test?
     grunt.loadNpmTasks('gruntify-eslint');
     grunt.loadNpmTasks('grunt-contrib-compress');
@@ -156,6 +169,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-strip-code');
 
     grunt.registerTask('test', [
+        'bower:install',
         'eslint',
         'jasmine:coverage'
     ]);

@@ -1,0 +1,11 @@
+{
+  "name": "workspace-browser-widget",
+  "dependencies": {
+    "i18next": "^15.0.9"
+  },
+  "exportsOverride": {
+    "i18next": {
+        "js": "i18next.js"
+    }
+  }
+}
