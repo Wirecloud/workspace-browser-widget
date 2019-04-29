@@ -15,9 +15,9 @@
     "use strict";
 
     var builder = new se.GUIBuilder();
-    var empty_search_template = builder.DEFAULT_OPENING + '<div class="alert alert-warning"><p>We couldn\'t find anything for your search - <b><t:keywords/>.</b></p><p>Suggestions:</p><ul><li>Make sure all words are spelled correctly.</li><li>Try different keywords.</li><li>Try more general keywords.</li></ul></div>' + builder.DEFAULT_CLOSING;
+    var empty_search_template = builder.DEFAULT_OPENING + '<div class="alert alert-warning"><p><t:empty_search_msg1/><b><t:keywords/>.</b></p><p><t:empty_search_msg2/></p><ul><li><t:empty_search_msg3/></li><li><t:empty_search_msg4/></li><li><t:empty_search_msg5/></li></ul></div>' + builder.DEFAULT_CLOSING;
     var error_template = builder.DEFAULT_OPENING + '<div class="alert alert-error"><t:message/></div>' + builder.DEFAULT_CLOSING;
-    var corrected_query_template = builder.DEFAULT_OPENING + '<div class="alert alert-info"><p>Showing results for <b><t:corrected_query/></b></p></div>' + builder.DEFAULT_CLOSING;
+    var corrected_query_template = builder.DEFAULT_OPENING + '<div class="alert alert-info"><p><t:corrected_query_msg/><b><t:corrected_query/></b></p></div>' + builder.DEFAULT_CLOSING;
     var workspace_template = builder.DEFAULT_OPENING +
         '<div class="workspace"><t:visibility/><div class="workspace-details"><div><strong><t:owner/>/<t:title/></strong></div><div><t:description/></div></div><div class="workspace-actions btn-group"><t:usebutton iconClass="fa fa-play"/><t:removebutton state="danger" iconClass="fa fa-trash"/></div></div>' +
         builder.DEFAULT_CLOSING;
@@ -40,7 +40,13 @@
                     others_dashboards: 'Others Dashboards',
                     private_dashboard: 'Private Dashboards',
                     shared_dashboards: 'Shared Dashboards',
-                    public_dashboards: 'Public Dashboards'
+                    public_dashboards: 'Public Dashboards',
+                    empty_search_msg1: 'We couldn\'t find anything for your search - ',
+                    empty_search_msg2: 'Suggestions:',
+                    empty_search_msg3: 'Make sure all words are spelled correctly.',
+                    empty_search_msg4: 'Try different keywords.',
+                    empty_search_msg5: 'Try more general keywords.',
+                    corrected_query_msg: 'Showing results for '
                 }
             },
             ja: {
@@ -51,7 +57,13 @@
                     others_dashboards: 'その他のダッシュボード',
                     private_dashboard: 'プライベート・ダッシュボード',
                     shared_dashboards: '共有ダッシュボード',
-                    public_dashboards: 'パブリック・ダッシュボード'
+                    public_dashboards: 'パブリック・ダッシュボード',
+                    empty_search_msg1: '検索で何も見つかりませんでした - ',
+                    empty_search_msg2: '対処:',
+                    empty_search_msg3: 'すべての単語のスペルが正しいことを確認してください',
+                    empty_search_msg4: '異なるキーワードを試してみてください',
+                    empty_search_msg5: 'より一般的なキーワードを試してください',
+                    corrected_query_msg: '検索結果 '
                 }
             }
         }
@@ -125,13 +137,23 @@
             layout.center.clear();
 
             if (search_info.total_count === 0) {
-                message = builder.parse(empty_search_template, {keywords: text_input.value});
+                message = builder.parse(empty_search_template, {
+                    keywords: text_input.value,
+                    empty_search_msg1: i18next.t('empty_search_msg1'),
+                    empty_search_msg2: i18next.t('empty_search_msg2'),
+                    empty_search_msg3: i18next.t('empty_search_msg3'),
+                    empty_search_msg4: i18next.t('empty_search_msg4'),
+                    empty_search_msg5: i18next.t('empty_search_msg5')
+                });
                 layout.center.appendChild(message);
                 return;
             }
 
             if ('corrected_query' in search_info) {
-                message = builder.parse(corrected_query_template, {corrected_query: search_info.corrected_query});
+                message = builder.parse(corrected_query_template, {
+                    corrected_query: search_info.corrected_query,
+                    corrected_query_msg: i18next.t('corrected_query_msg')
+                });
                 layout.center.appendChild(message);
             }
 
