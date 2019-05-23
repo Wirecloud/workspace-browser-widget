@@ -1,8 +1,8 @@
 ## v0.1.3 (2019/05/XX)
 
-- Add i18n feature
-- Add Japanese translation
-- Add Spanish translation
+- Añadido soporte para internacionalización (i18n)
+- Añadida la traducción al Japonés
+- Añadida la traducción al Español
 
 
 ## v0.1.2 (2017/10/20)

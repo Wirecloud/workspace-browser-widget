@@ -49,6 +49,23 @@
                     corrected_query_msg: 'Showing results for '
                 }
             },
+            es: {
+                translation: {
+                    search_keywords: 'Buscar',
+                    all_dashboards: 'Todos los paneles',
+                    my_dashboards: 'Mis paneles',
+                    others_dashboards: 'Paneles de otros',
+                    private_dashboards: 'Paneles privados',
+                    shared_dashboards: 'Paneles compartidos',
+                    public_dashboards: 'Paneles públicos',
+                    empty_search_msg1: 'No hemos podido encontrar nada para su búsqueda - ',
+                    empty_search_msg2: 'Sugerencias:',
+                    empty_search_msg3: 'Asegúrese de que todas las palabras estén escritas correctamente.',
+                    empty_search_msg4: 'Prueba a usar otros términos.',
+                    empty_search_msg5: 'Prueba a usar términos más generales.',
+                    corrected_query_msg: 'Mostrando resultados para '
+                }
+            },
             ja: {
                 translation: {
                     search_keywords: '検索キーワード',
