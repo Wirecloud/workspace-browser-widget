@@ -3,8 +3,9 @@
     <details>
         <title>__MSG_displayName__</title>
         <homepage>https://github.com/Wirecloud/workspace-browser-widget</homepage>
-        <authors>Álvaro Arranz</authors>
-        <email>aarranz@fi.upm.es</email>
+        <authors>Álvaro Arranz &lt;aarranz@ficodes.com&gt;</authors>
+        <contributors>Kazuhito Suda</contributors>
+        <email>wirecloud@conwet.com</email>
         <image></image>
         <smartphoneimage></smartphoneimage>
         <description>__MSG_description__</description>
@@ -24,6 +25,10 @@
     <rendering height="300px" width="30%"/>
 
     <translations default="en">
+        <translation lang="es">
+            <msg name="displayName">Explorador de espacios de trabajo</msg>
+            <msg name="description">Explora y descubre los espacios de trabajo disponibles</msg>
+        </translation>
         <translation lang="en">
             <msg name="displayName">Workspace Browser</msg>
             <msg name="description">Browse and discover the available workspaces</msg>
