@@ -1,4 +1,4 @@
-## v0.1.3 (2019/05/XX)
+## v0.1.3 (2019/05/23)
 
 - Añadido soporte para internacionalización (i18n)
 - Añadida la traducción al Japonés
