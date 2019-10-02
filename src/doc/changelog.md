@@ -1,3 +1,9 @@
+## v0.1.4 (XXXX/XX/XX)
+
+- Add custom icon for public dashboards requiring authentication (requires
+    WireCloud 1.4).
+
+
 ## v0.1.3 (2019/05/23)
 
 - Add i18n feature
