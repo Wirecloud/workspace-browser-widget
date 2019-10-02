@@ -183,7 +183,9 @@
                     visibility: function (options) {
                         var element = document.createElement('i');
                         element.className = "fa fa-fw fa-2x";
-                        if (workspace.public) {
+                        if (workspace.public && workspace.requireauth) {
+                            element.classList.add('fa-id-card');
+                        } else if (workspace.public) {
                             element.classList.add('fa-globe');
                         } else if (workspace.shared) {
                             element.classList.add('fa-share-alt');
