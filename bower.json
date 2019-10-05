@@ -5,7 +5,7 @@
   },
   "exportsOverride": {
     "i18next": {
-        "js": "i18next.js"
+        "js": "i18next.min.js"
     }
   }
 }
